@@ -15,20 +15,24 @@ class UserName extends React.Component {
     })
   }
 
-	handleSubmit = (e) => {    
+	handleSubmit = (e) => {
+		console.log(this.state.username)
     e.preventDefault()
     saveName({
     
     })
     this.setState({
-      message:''
+
+      username:''
     })
   }
 
   render() {
     return (
       <div>
-        <input onChange={this.handleChange} placeholder='Enter UserName' name='username' value={this.state.name} />
+	      <form onSubmit={this.handleSubmit}>
+	        <input onChange={this.handleChange} placeholder='Enter UserName' name='username' value={this.state.username} />
+	      </form>
       </div>
     )
   }
@@ -41,3 +45,10 @@ const mapStateToProps = function(appState) {
 }
 
 export default connect(mapStateToProps)(UserName)
+
+// io.on('connection', function(socket) {
+// socket.on('send-nickname', function(nickname) {
+//     socket.nickname = nickname;
+//     users.push(socket.nickname);
+//     console.log(users);
+// });
