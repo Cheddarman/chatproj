@@ -1,14 +1,16 @@
-import React from 'react'
-import { saveName } from './api/messaging'
-import {connect} from 'react-redux'
 
-class UserName extends React.Component {
-  constructor(props) {
-    super(props)
+import React, {Component} from 'react'
+import { saveName } from './api/messaging'
+
+
+class UserName extends Component {
+  constructor() {
+    super()
   	this.state = {
   		username: ''
   	}
   }
+
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value
@@ -16,20 +18,15 @@ class UserName extends React.Component {
   }
 
 	handleSubmit = (e) => {
-		console.log(this.state.username)
-    e.preventDefault()
-    saveName({
-    
-    })
-    this.setState({
 
-      username:''
-    })
+    e.preventDefault()
+    saveName(this.state.username)
+    this.props.history.push('/Message')
   }
 
   render() {
     return (
-      <div>
+      <div className='login'>
 	      <form onSubmit={this.handleSubmit}>
 	        <input onChange={this.handleChange} placeholder='Enter UserName' name='username' value={this.state.username} />
 	      </form>
@@ -38,13 +35,8 @@ class UserName extends React.Component {
   }
 }
 
-const mapStateToProps = function(appState) {
-  return {
-    names: appState.names
-  }
-}
+export default UserName
 
-export default connect(mapStateToProps)(UserName)
 
 // io.on('connection', function(socket) {
 // socket.on('send-nickname', function(nickname) {
