@@ -27,6 +27,7 @@ class Message extends Component {
     this.setState({
       message:''
     })
+
     this.refs.messages.scrollTop = 0
   }
 

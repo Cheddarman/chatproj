@@ -1,3 +1,4 @@
+
 import React, {Component} from 'react'
 import { saveName } from './api/messaging'
 
@@ -17,6 +18,7 @@ class UserName extends Component {
   }
 
 	handleSubmit = (e) => {
+
     e.preventDefault()
     saveName(this.state.username)
     this.props.history.push('/Message')
@@ -34,6 +36,7 @@ class UserName extends Component {
 }
 
 export default UserName
+
 
 // io.on('connection', function(socket) {
 // socket.on('send-nickname', function(nickname) {
