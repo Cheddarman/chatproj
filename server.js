@@ -23,10 +23,6 @@ io.on('connection', function(socket){
     socket.on('addMessage', function(message){
         io.emit('newMessage', message)
     })
-
-    socket.on('saveName', function(username){
-    	io.emit('newUser', username)
-    })
 })
 
 server.listen(3001, function(){

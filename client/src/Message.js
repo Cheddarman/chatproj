@@ -4,8 +4,8 @@ import {connect} from 'react-redux'
 import moment from 'moment'
 
 class Message extends Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
     this.state = {
       message: ''
     }
@@ -27,28 +27,34 @@ class Message extends Component {
     this.setState({
       message:''
     })
+    this.refs.messages.scrollTop = 0
   }
+
   componentWillMount(){
+    console.log(this.props)
     if (!this.props.username) {
       this.props.history.push('/')
     }
   }
+  // componentDidUpdate(){
+  //   var node = this.getDOMNode()
+  //   node.scrollTop = node.scrollHeight
+  // }
 
   render() {
-
     return (
-
-      <div>
-        <form onSubmit={this.handleSubmit}>
+      <div className='chatBit'>
+        <form className='typingBit' onSubmit={this.handleSubmit}>
           <input onChange={this.handleChange} name="message" placeholder="Send a message..." value={this.state.message} />
-          <button type="submit">Send</button>
         </form>
-        <div id="messages">
-          <ul>
-            {this.props.messages.map((message, i)=>(
-              <li key={'message' + i}>{message.username + ': ' + message.timestamp + ' - ' + message.message}</li>
-            ))}
-          </ul>
+        <div className='mContainer' ref="messages">
+          <div className="messages">
+            <ul>
+              {this.props.messages.map((message, i)=>(
+                <li key={'message' + i}>{message.username + ': ' + message.timestamp + ' - ' + message.message}</li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     )

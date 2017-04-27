@@ -9,7 +9,7 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <div>
+        <div className='mainBit'>
           <Route exact={true} path='/' component={UserName}/>
           <Route path='/Message' component={Message}/>
         </div>
